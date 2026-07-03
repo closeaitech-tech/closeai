@@ -1,0 +1,77 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@property --accent-hue {
+  syntax: '<number>';
+  inherits: true;
+  initial-value: 24;
+}
+:root {
+  --bg-primary: #09090b;
+  --bg-secondary: #18181b;
+  --bg-tertiary: #27272a;
+  --border-color: #3f3f46;
+  --text-primary: #fafafa;
+  --text-secondary: #a1a1aa;
+  --text-tertiary: #71717a;
+  --sidebar-bg: #1e1e22;
+  --input-bg: rgba(24,24,27,0.8);
+  --glass-bg: rgba(24,24,27,0.7);
+  --glass-border: rgba(63,63,70,0.4);
+  --accent-hue: 24;
+  --accent: hsl(var(--accent-hue), 95%, 50%);
+  --accent-dark: hsl(var(--accent-hue), 95%, 40%);
+  --accent-glow: hsla(var(--accent-hue), 95%, 50%, 0.15);
+  accent-color: var(--accent);
+}
+
+.light {
+  --bg-primary: #ffffff;
+  --bg-secondary: #f4f4f5;
+  --bg-tertiary: #e4e4e7;
+  --border-color: #d4d4d8;
+  --text-primary: #18181b;
+  --text-secondary: #52525b;
+  --text-tertiary: #71717a;
+  --sidebar-bg: #f4f4f5;
+  --input-bg: rgba(244,244,245,0.8);
+  --glass-bg: rgba(255,255,255,0.7);
+  --glass-border: rgba(212,212,216,0.5);
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  height: 100vh;
+  overflow: hidden;
+  font-size: 13px;
+  line-height: 1.55;
+  transition: background 0.3s, color 0.3s;
+}
+
+.accent-cycle {
+  animation: hueRotate 1800s linear infinite;
+}
+@keyframes hueRotate {
+  from { --accent-hue: 24; }
+  to { --accent-hue: 384; }
+}
+
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border-color); border-radius: 4px; }
+
+/* basic animations */
+.animate-fade-slide-up { animation: fadeSlideUp 0.3s ease; }
+@keyframes fadeSlideUp { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+.animate-dot-bounce { animation: dotBounce 1.4s infinite; }
+@keyframes dotBounce { 0%,60%,100% { transform: translateY(0); opacity: 0.4; } 30% { transform: translateY(-4px); opacity: 1; } }
+
+.animate-modal-overlay-in { animation: modalOverlayIn 0.2s ease; }
+@keyframes modalOverlayIn { from { opacity: 0; } to { opacity: 1; } }
+
+.animate-modal-scale-in { animation: modalScaleIn 0.2s ease; }
+@keyframes modalScaleIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
