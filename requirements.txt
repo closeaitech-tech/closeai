@@ -1,0 +1,13 @@
+fastapi
+uvicorn
+psycopg2-binary
+web3
+eth-account
+bcrypt
+pydantic-settings
+python-multipart
+PyPDF2
+python-docx
+openpyxl
+httpx
+feedparser
