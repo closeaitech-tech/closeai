@@ -6,7 +6,8 @@ const WalletContext = createContext(null);
 export const useWallet = () => useContext(WalletContext);
 
 const CHAINS = {
-  polygon: { /* same as earlier, with RPCs from env */ },
+  polygon: { https://polygon-mainnet.g.alchemy.com/v2/qSmf8n6CEKeXdvG-xyftf },
+  CLOSE:{ 0x3c6833cFDdED80fE76474a3Cb2Cc050Daec91fe8 }
   ethereum: { /* ... */ },
   bsc: { /* ... */ },
   arbitrum: { /* ... */ },

@@ -30,21 +30,20 @@ export default function SignupModal({ onClose, toast }) {
     try {
       // Sign up – sets auth token / session
       await signup(email, password, name);
+// After successful signup – activate wallet
+try {
+  // We'll send the password so the backend can unlock and issue the bonus
+  await apiCall('/api/wallet/activate', {
+    method: 'POST',
+    body: JSON.stringify({ password }),
+  });
+  toast('Wallet created! Save your seed phrase securely.');
+} catch (activationErr) {
+  toast('Account created! Wallet activation pending. You may need to open OS Wallets.');
+  
+}
 
-      // Wallet activation – now uses the auth token established by signup, no password re‑transmission
-      try {
-        await apiCall('/api/wallet/activate', { method: 'POST' });
-        toast('Account created! 2,000 CLOSE added to your wallet.');
-      } catch (activationErr) {
-        toast('Account created! Please activate your wallet from the OS Wallet page to receive 2,000 CLOSE.');
-      }
-      onClose();
-    } catch (e) {
-      toast('Signup failed: ' + (e.message || 'Please try again'));
-    } finally {
-      setLoading(false);
-    }
-  };
+};
 
   // Open login modal via custom event – ensure the listener is cleaned up elsewhere
   const openLogin = () => {
