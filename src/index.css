@@ -2,76 +2,96 @@
 @tailwind components;
 @tailwind utilities;
 
-@property --accent-hue {
-  syntax: '<number>';
-  inherits: true;
-  initial-value: 24;
-}
 :root {
-  --bg-primary: #09090b;
-  --bg-secondary: #18181b;
-  --bg-tertiary: #27272a;
-  --border-color: #3f3f46;
-  --text-primary: #fafafa;
-  --text-secondary: #a1a1aa;
-  --text-tertiary: #71717a;
-  --sidebar-bg: #1e1e22;
-  --input-bg: rgba(24,24,27,0.8);
-  --glass-bg: rgba(24,24,27,0.7);
-  --glass-border: rgba(63,63,70,0.4);
-  --accent-hue: 24;
-  --accent: hsl(var(--accent-hue), 95%, 50%);
-  --accent-dark: hsl(var(--accent-hue), 95%, 40%);
-  --accent-glow: hsla(var(--accent-hue), 95%, 50%, 0.15);
-  accent-color: var(--accent);
+  --bg-primary: #0a0a1a;
+  --bg-secondary: #0f0f2a;
+  --bg-tertiary: #16163a;
+  --border-color: #2a2a5a;
+  --text-primary: #e2e8f0;
+  --text-secondary: #94a3b8;
+  --text-tertiary: #64748b;
+  --sidebar-bg: #0d0d25;
+  --input-bg: rgba(15, 15, 42, 0.8);
+  --glass-bg: rgba(15, 15, 42, 0.8);
+  --glass-border: rgba(99, 102, 241, 0.3);
+  --accent: #6366f1;
+  --accent-dark: #4f46e5;
+  --accent-glow: rgba(99, 102, 241, 0.2);
+  --accent-gradient: linear-gradient(135deg, #6366f1, #a855f7);
+  --font-heading: 'Space Grotesk', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
 }
 
 .light {
-  --bg-primary: #ffffff;
-  --bg-secondary: #f4f4f5;
-  --bg-tertiary: #e4e4e7;
-  --border-color: #d4d4d8;
-  --text-primary: #18181b;
-  --text-secondary: #52525b;
-  --text-tertiary: #71717a;
-  --sidebar-bg: #f4f4f5;
-  --input-bg: rgba(244,244,245,0.8);
-  --glass-bg: rgba(255,255,255,0.7);
-  --glass-border: rgba(212,212,216,0.5);
+  --bg-primary: #f8fafc;
+  --bg-secondary: #e2e8f0;
+  --bg-tertiary: #cbd5e1;
+  --border-color: #94a3b8;
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-tertiary: #64748b;
+  --sidebar-bg: #f1f5f9;
+  --input-bg: rgba(241, 245, 249, 0.8);
+  --glass-bg: rgba(241, 245, 249, 0.8);
+  --glass-border: rgba(99, 102, 241, 0.4);
 }
 
 body {
-  font-family: 'Inter', sans-serif;
+  font-family: var(--font-body);
   background: var(--bg-primary);
   color: var(--text-primary);
   height: 100vh;
   overflow: hidden;
-  font-size: 13px;
-  line-height: 1.55;
+  font-size: 14px;
+  line-height: 1.5;
   transition: background 0.3s, color 0.3s;
 }
 
-.accent-cycle {
-  animation: hueRotate 1800s linear infinite;
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 600;
 }
-@keyframes hueRotate {
-  from { --accent-hue: 24; }
-  to { --accent-hue: 384; }
+
+code, .font-mono {
+  font-family: var(--font-mono);
 }
 
 ::-webkit-scrollbar { width: 4px; }
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb { background: var(--border-color); border-radius: 4px; }
 
-/* basic animations */
+@keyframes fadeSlideUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
 .animate-fade-slide-up { animation: fadeSlideUp 0.3s ease; }
-@keyframes fadeSlideUp { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
 
+@keyframes dotBounce {
+  0%,60%,100% { transform: translateY(0); opacity: 0.4; }
+  30% { transform: translateY(-4px); opacity: 1; }
+}
 .animate-dot-bounce { animation: dotBounce 1.4s infinite; }
-@keyframes dotBounce { 0%,60%,100% { transform: translateY(0); opacity: 0.4; } 30% { transform: translateY(-4px); opacity: 1; } }
 
-.animate-modal-overlay-in { animation: modalOverlayIn 0.2s ease; }
 @keyframes modalOverlayIn { from { opacity: 0; } to { opacity: 1; } }
+.animate-modal-overlay-in { animation: modalOverlayIn 0.2s ease; }
 
+@keyframes modalScaleIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
 .animate-modal-scale-in { animation: modalScaleIn 0.2s ease; }
-@keyframes modalScaleIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+
+@keyframes toastIn {
+  from { opacity: 0; transform: translateX(-50%) translateY(20px); }
+  to { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+.animate-toast-in { animation: toastIn 0.3s ease; }
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.animate-marquee {
+  animation: marquee 30s linear infinite;
+}
